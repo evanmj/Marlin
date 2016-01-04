@@ -86,14 +86,14 @@
 //This is for controlling a fan to cool down the stepper drivers
 //it will turn on when any driver is enabled
 //and turn off after the set amount of seconds from last driver being disabled again
-#define CONTROLLERFAN_PIN -1 //Pin used for the fan to cool controller (-1 to disable)
-#define CONTROLLERFAN_SECS 60 //How many seconds, after all motors were disabled, the fan should run
-#define CONTROLLERFAN_SPEED 255  // == full speed
+#define CONTROLLERFAN_PIN 4 //Pin used for the fan to cool controller (-1 to disable)   // EMJ: Added pin numbering here for 'chassis' fan on azteex x3 pro
+#define CONTROLLERFAN_SECS 2 //How many seconds, after all motors were disabled, the fan should run // EMJ: Lowered from 60 to 2 seconds so fan goes off when motor drivers go off.
+#define CONTROLLERFAN_SPEED 150  // EMJ: Moved from 255 to 150 to keep noise down (I have a huge fan).
 
 // When first starting the main fan, run it at full speed for the
 // given number of milliseconds.  This gets the fan spinning reliably
 // before setting a PWM value. (Does not work with software PWM for fan on Sanguinololu)
-//#define FAN_KICKSTART_TIME 100
+#define FAN_KICKSTART_TIME 50  // EMJ: Kickstart fans a bit.  100 -> 50
 
 // This defines the minimal speed for the main fan, run in PWM mode
 // to enable uncomment and set minimal PWM speed for reliable running (1-255)
@@ -107,12 +107,12 @@
 // extruder temperature is above/below EXTRUDER_AUTO_FAN_TEMPERATURE.
 // Multiple extruders can be assigned to the same pin in which case
 // the fan will turn on when any selected extruder is above the threshold.
-#define EXTRUDER_0_AUTO_FAN_PIN -1
+#define EXTRUDER_0_AUTO_FAN_PIN  5     // EMJ: use 30mm extruder fan here.
 #define EXTRUDER_1_AUTO_FAN_PIN -1
 #define EXTRUDER_2_AUTO_FAN_PIN -1
 #define EXTRUDER_3_AUTO_FAN_PIN -1
-#define EXTRUDER_AUTO_FAN_TEMPERATURE 50
-#define EXTRUDER_AUTO_FAN_SPEED   255  // == full speed
+#define EXTRUDER_AUTO_FAN_TEMPERATURE 30  // EMJ: Moved from 50 to 30 degrees.
+#define EXTRUDER_AUTO_FAN_SPEED   127  // EMJ: Moved from 255 to 127 to slow extruder fan speed... Running a 12v fan with 24v, so we need half voltage to keep from hurting it.
 
 
 //===========================================================================
@@ -132,7 +132,7 @@
 // Only a few motherboards support this, like RAMPS, which have dual extruder support (the 2nd, often unused, extruder driver is used
 // to control the 2nd Z axis stepper motor). The pins are currently only defined for a RAMPS motherboards.
 // On a RAMPS (or other 5 driver) motherboard, using this feature will limit you to using 1 extruder.
-//#define Z_DUAL_STEPPER_DRIVERS
+#define Z_DUAL_STEPPER_DRIVERS  // EMJ: Use dual Z steppers.
 
 #if ENABLED(Z_DUAL_STEPPER_DRIVERS)
 
@@ -266,7 +266,7 @@
 #define MICROSTEP_MODES {16,16,16,16,16} // [1,2,4,8,16]
 
 // Motor Current setting (Only functional when motor driver current ref pins are connected to a digital trimpot on supported boards)
-#define DIGIPOT_MOTOR_CURRENT {135,135,135,135,135} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
+#define DIGIPOT_MOTOR_CURRENT {255,255,255,185,255} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)  // EMJ: azteeg x3 pro should support this, but I don't think they are in use... setting reasonable values just in case.  X,Y,Z,E,Z2
 
 // uncomment to enable an I2C based DIGIPOT like on the Azteeg X3 Pro
 //#define DIGIPOT_I2C

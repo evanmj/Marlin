@@ -5,7 +5,7 @@
 #include "pins_RAMPS_13.h"
 
 #undef FAN_PIN
-#define FAN_PIN             6 //Part Cooling System
+#define FAN_PIN             9 //Part Cooling System  // EMJ: Changed from 6 to 9
 #define BEEPER_PIN         33
 #define CONTROLLERFAN_PIN   4 //Pin used for the fan to cool motherboard (-1 to disable)
 //Fans/Water Pump to cool the hotend cool side.
@@ -77,7 +77,7 @@
 //on a Delta with 1 servo. Running through the Z servo endstop in code.
 //Physical wire attachment was done on EXT1 on the GND, 5V, and D47 pins.
 //
-#define SERVO0_PIN         47
+#define SERVO0_PIN         49  // EMJ: Changed from 47 to 49.
 
 //LCD Pins//
 
